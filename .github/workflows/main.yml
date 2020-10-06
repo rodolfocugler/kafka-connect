@@ -1,0 +1,29 @@
+# Github workflow
+name: CI
+
+# run when push tags
+on:
+  push:
+    tags:
+      - '*'
+
+# Jobs
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out the Repo
+        uses: actions/checkout@v2
+
+      - name: Lint Code Base
+        uses: github/super-linter@v3
+        env:
+          DEFAULT_BRANCH: main
+
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: rodolfocugler/kafka-connect
+          tag_with_ref: true
