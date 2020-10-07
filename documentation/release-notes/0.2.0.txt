@@ -1,0 +1,6 @@
+kafka-connect v0.2.0 Release Notes
+==========================
+
+* Documentation updates
+
+  - hpgrahsl-kafka-connect-mongodb:1.4.0

@@ -23,8 +23,14 @@ ENV KAFKA_CONNECT_HTTP_VERSION 0.7.6
 RUN curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "https://d1i4a15mxbxib1.cloudfront.net/api/plugins/castorm/kafka-connect-http/versions/${KAFKA_CONNECT_HTTP_VERSION}/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
     unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/
 
+# download hpgrahsl-kafka-connect-mongodb
+ENV KAFKA_CONNECT_MONGODB_VERSION 1.4.0
+RUN curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip "https://d1i4a15mxbxib1.cloudfront.net/api/plugins/hpgrahsl/kafka-connect-mongodb/versions/${KAFKA_CONNECT_MONGODB_VERSION}/hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip" && \
+    unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip -d ./hpgrahsl-kafka-connect-mongodb/
+
 # download kafka connect image
 FROM confluentinc/cp-kafka-connect:6.0.0
 
 COPY --from=builder ./kafka-connect-jdbc/ /usr/share/java/
 COPY --from=builder ./castorm-kafka-connect-http/ /usr/share/java/
+COPY --from=builder ./hpgrahsl-kafka-connect-mongodb/ /usr/share/java/
