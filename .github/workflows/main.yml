@@ -15,11 +15,6 @@ jobs:
       - name: Check Out the Repo
         uses: actions/checkout@v2
 
-      - name: Lint Code Base
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
