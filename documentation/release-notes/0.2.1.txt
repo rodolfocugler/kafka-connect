@@ -5,3 +5,5 @@ kafka-connect v0.2.1 Release Notes
 
   - Reverting lint
   - Add version number for curl package
+  - Add version number for ca-certificates package
+  - Fix lint issues
