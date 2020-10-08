@@ -4,7 +4,7 @@ FROM ubuntu:20.04 AS builder
 # install curl
 RUN apt-get update && \
     apt-get install -y unzip=6.0-25ubuntu1 && \
-    apt-get install -y curl
+    apt-get install -y curl=7.68.0-1ubuntu2.2
 
 # create kafka-connect-jdbc folder
 RUN mkdir ./kafka-connect-jdbc/
