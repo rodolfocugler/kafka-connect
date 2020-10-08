@@ -23,3 +23,7 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Docker Build
+        run: |
+          docker build -t test .
