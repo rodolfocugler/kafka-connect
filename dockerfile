@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     unzip=6.0-25ubuntu1 \
     curl=7.68.0-1ubuntu2.2 \
-    ca-certificates=20200601 && \
+    ca-certificates=20190110ubuntu1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
