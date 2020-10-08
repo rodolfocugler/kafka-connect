@@ -1,10 +1,13 @@
 FROM ubuntu:20.04 AS builder
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 # install unzip
 # install curl
 RUN apt-get update && \
-    apt-get install -y unzip=6.0-25ubuntu1 && \
-    apt-get install -y curl=7.68.0-1ubuntu2.2
+    apt-get install -y --no-install-recommends unzip=6.0-25ubuntu1 && \
+    apt-get install -y --no-install-recommends curl=7.68.0-1ubuntu2.2 && \
+    apt-get install -y --no-install-recommends ca-certificates
 
 # create kafka-connect-jdbc folder
 RUN mkdir ./kafka-connect-jdbc/
