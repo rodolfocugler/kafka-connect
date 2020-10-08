@@ -4,6 +4,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # install unzip
 # install curl
+# install ca-certificates
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     unzip=6.0-25ubuntu1 \
