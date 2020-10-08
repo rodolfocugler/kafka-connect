@@ -1,0 +1,7 @@
+kafka-connect v0.2.1 Release Notes
+==========================
+
+* Documentation updates
+
+  - Reverting lint
+  - Add version number for curl package
