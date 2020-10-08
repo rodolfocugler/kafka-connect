@@ -1,5 +1,5 @@
 # Github workflow
-name: CI-LINT
+name: CI-CHECK
 
 # run when push commits
 on:
