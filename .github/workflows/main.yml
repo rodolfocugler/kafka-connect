@@ -30,4 +30,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: rodolfocugler/kafka-connect
           tag_with_ref: true
-          build-args: GIT_PERSONAL_USERNAME=${{secrets.GIT_PERSONAL_USERNAME}},GIT_PERSONAL_TOKEN=${{secrets.GIT_PERSONAL_TOKEN}}
+          build_args: GIT_PERSONAL_USERNAME=${{secrets.GIT_PERSONAL_USERNAME}},GIT_PERSONAL_TOKEN=${{secrets.GIT_PERSONAL_TOKEN}}
