@@ -26,4 +26,7 @@ jobs:
 
       - name: Docker Build
         run: |
-          docker build -t test .
+          docker build --build-arg GIT_PERSONAL_USERNAME=$GIT_PERSONAL_USERNAME --build-arg GIT_PERSONAL_TOKEN=$GIT_PERSONAL_TOKEN -t test .
+        env:
+          GIT_PERSONAL_USERNAME: ${{secrets.GIT_PERSONAL_USERNAME}}
+          GIT_PERSONAL_TOKEN: ${{secrets.GIT_PERSONAL_TOKEN}}

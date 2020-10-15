@@ -2,11 +2,16 @@ FROM ubuntu:20.04 AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+ARG GIT_PERSONAL_USERNAME
+ARG GIT_PERSONAL_TOKEN
+
+# install libxml2-utils
 # install unzip
 # install curl
 # install ca-certificates
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+    libxml2-utils=2.9.10+dfsg-5 \
     unzip=6.0-25ubuntu1 \
     curl=7.68.0-1ubuntu2.2 \
     ca-certificates=20190110ubuntu1 && \
@@ -23,12 +28,18 @@ RUN curl -o confluentinc-kafka-connect-jdbc-${KAFKA_CONNECT_JDBC_VERSION}.zip "h
 
 # download mysql connector
 ENV MYSQL_CONNECTOR_JAVA_VERSION 8.0.21
-RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_JAVA_VERSION}.tar.gz" | tar -xzf - -C ./kafka-connect-jdbc/ --strip-components=1 mysql-connector-java-$MYSQL_CONNECTOR_JAVA_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_JAVA_VERSION.jar
+RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${MYSQL_CONNECTOR_JAVA_VERSION}.tar.gz" | tar -xzf - -C ./kafka-connect-jdbc/confluentinc-kafka-connect-jdbc-${KAFKA_CONNECT_JDBC_VERSION}/lib/ --strip-components=1 mysql-connector-java-$MYSQL_CONNECTOR_JAVA_VERSION/mysql-connector-java-$MYSQL_CONNECTOR_JAVA_VERSION.jar
 
 # download castorm-kafka-connect-http
-ENV KAFKA_CONNECT_HTTP_VERSION 0.7.6
-RUN curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "https://d1i4a15mxbxib1.cloudfront.net/api/plugins/castorm/kafka-connect-http/versions/${KAFKA_CONNECT_HTTP_VERSION}/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
-    unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/
+ENV KAFKA_CONNECT_HTTP_VERSION 0.7.7-0.1.0
+RUN curl -u rodolfocugler:e4a9e36e8629dc7b4a7e891e84f1a9003e1e93a5 -o url.txt "https://maven.pkg.github.com/finance-br/kafka-connect-http/com/github/castorm/kafka-connect-http/${KAFKA_CONNECT_HTTP_VERSION}/kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
+    total_char=$(cat url.txt | wc -c) && \
+    max_size=$(($total_char - 26)) && \
+    url_enconded=$(echo $(< url.txt) | cut -b 10-$max_size) && \
+    url=${url_enconded//amp;/} && \
+    curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip $url && \
+    mkdir castorm-kafka-connect-http && \
+    unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
 
 # download hpgrahsl-kafka-connect-mongodb
 ENV KAFKA_CONNECT_MONGODB_VERSION 1.4.0
