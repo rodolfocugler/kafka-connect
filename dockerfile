@@ -33,11 +33,11 @@ RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector
 # download castorm-kafka-connect-http
 ENV KAFKA_CONNECT_HTTP_VERSION 0.7.7-0.1.0
 RUN curl -u rodolfocugler:e4a9e36e8629dc7b4a7e891e84f1a9003e1e93a5 -o url.txt "https://maven.pkg.github.com/finance-br/kafka-connect-http/com/github/castorm/kafka-connect-http/${KAFKA_CONNECT_HTTP_VERSION}/kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
-    total_char=$(cat url.txt | wc -c) && \
-    max_size=$(($total_char - 26)) && \
-    url_enconded=$(echo $(< url.txt) | cut -b 10-$max_size) && \
-    url=${url_enconded//amp;/} && \
-    curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip $url && \
+    total_char=$(< url.txt wc -c) && \
+    max_size=$((total_char - 26)) && \
+    url_enconded=$(echo $(< url.txt cut -b 10-$max_size)) && \
+    url="${url_enconded//amp;/}" && \
+    curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "$url" && \
     mkdir castorm-kafka-connect-http && \
     unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
 
