@@ -41,10 +41,17 @@ RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven
     mkdir castorm-kafka-connect-http && \
     unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
 
+
 # download hpgrahsl-kafka-connect-mongodb
-ENV KAFKA_CONNECT_MONGODB_VERSION 1.4.0
-RUN curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip "https://d1i4a15mxbxib1.cloudfront.net/api/plugins/hpgrahsl/kafka-connect-mongodb/versions/${KAFKA_CONNECT_MONGODB_VERSION}/hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip" && \
-    unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip -d ./hpgrahsl-kafka-connect-mongodb/
+ENV KAFKA_CONNECT_MONGODB_VERSION 1.4.1
+RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven.pkg.github.com/finance-br/kafka-connect-mongodb/at/grahsl/kafka/connect/kafka-connect-mongodb/${KAFKA_CONNECT_MONGODB_VERSION}/kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_VERSION}.zip" && \
+    total_char=$(< url.txt wc -c) && \
+    max_size=$((total_char - 26)) && \
+    url_enconded=$(< url.txt cut -b 10-$max_size) && \
+    url="${url_enconded//amp;/}" && \
+    curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip "$url" && \
+    mkdir hpgrahsl-kafka-connect-mongodb && \
+    unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
 
 # download kafka connect image
 FROM confluentinc/cp-kafka-connect:6.0.0
