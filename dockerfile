@@ -51,7 +51,7 @@ RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven
     url="${url_enconded//amp;/}" && \
     curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip "$url" && \
     mkdir hpgrahsl-kafka-connect-mongodb && \
-    unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
+    unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./hpgrahsl-kafka-connect-mongodb/hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}
 
 # download kafka connect image
 FROM confluentinc/cp-kafka-connect:6.0.0
