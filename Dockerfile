@@ -41,7 +41,7 @@ RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven
 
 # download hpgrahsl-kafka-connect-mongodb
 ENV KAFKA_CONNECT_MONGODB_SINK_VERSION 1.4.0-0.1.1
-RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven.pkg.github.com/finance-br/kafka-connect-mongodb/at/grahsl/kafka/connect/kafka-connect-mongodb/${KAFKA_CONNECT_MONGODB_SINK_VERSION}/kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip" && \
+RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven.pkg.github.com/rodolfocugler/kafka-connect-mongodb/at/grahsl/kafka/connect/kafka-connect-mongodb/${KAFKA_CONNECT_MONGODB_SINK_VERSION}/kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip" && \
     total_char=$(< url.txt wc -c) && \
     max_size=$((total_char - 26)) && \
     url_enconded=$(< url.txt cut -b 10-$max_size) && \
