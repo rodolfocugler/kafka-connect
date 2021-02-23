@@ -1,6 +1,0 @@
-kafka-connect v0.1.0 Release Notes
-==========================
-
-* Documentation updates
-
-  - castorm-kafka-connect-http:0.7.6

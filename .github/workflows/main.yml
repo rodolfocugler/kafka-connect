@@ -1,11 +1,12 @@
 # Github workflow
 name: CI
 
-# run when push tags
+# run when push commits
 on:
   push:
-    tags:
-      - '*'
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 # Jobs
 jobs:
@@ -15,12 +16,6 @@ jobs:
       - name: Check Out the Repo
         uses: actions/checkout@v2
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Lint Code Base
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Push to Docker Hub

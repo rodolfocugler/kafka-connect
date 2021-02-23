@@ -1,6 +1,0 @@
-kafka-connect v0.3.1 Release Notes
-==========================
-
-* Documentation updates
-
-  - finance-br/hpgrahsl-kafka-connect-mongodb:1.4.0-0.1.1

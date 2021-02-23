@@ -1,8 +1,0 @@
-kafka-connect v0.0.1 Release Notes
-==========================
-
-* Documentation updates
-
-  - confluentinc/cp-kafka-connect:6.0.0
-  - confluentinc-kafka-connect-jdbc:5.5.2
-  - mysql-connector-java:8.0.21

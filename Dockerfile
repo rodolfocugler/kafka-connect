@@ -1,22 +1,16 @@
-FROM ubuntu:20.04 AS builder
+FROM ubuntu:18.04 AS builder
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG GIT_PERSONAL_USERNAME
 ARG GIT_PERSONAL_TOKEN
 
-# install libxml2-utils
 # install unzip
 # install curl
-# install ca-certificates
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    libxml2-utils=2.9.10+dfsg-5 \
-    unzip=6.0-25ubuntu1 \
-    curl=7.68.0-1ubuntu2.2 \
-    ca-certificates=20190110ubuntu1 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+    unzip \
+    curl
 
 # create kafka-connect-jdbc folder
 RUN mkdir ./kafka-connect-jdbc/
@@ -57,7 +51,7 @@ RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven
     unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./hpgrahsl-kafka-connect-mongodb/hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_HTTP_VERSION}
 
 # download kafka connect image
-FROM confluentinc/cp-kafka-connect:6.0.0
+FROM confluentinc/cp-kafka-connect:6.1.0
 
 COPY --from=builder ./kafka-connect-jdbc/ /usr/share/java/
 COPY --from=builder ./castorm-kafka-connect-http/ /usr/share/java/

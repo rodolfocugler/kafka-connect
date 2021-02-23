@@ -4,9 +4,9 @@ name: CI-CHECK
 # run when push commits
 on:
   push:
-    branches: [ main ]
+    branches: [ dev ]  
   pull_request:
-    branches: [ main ]
+    branches: [ dev ]
 
 # Jobs
 jobs:
@@ -16,12 +16,6 @@ jobs:
       - name: Check Out the Repo
         uses: actions/checkout@v2
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Lint Code Base
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Docker Build
