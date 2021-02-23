@@ -30,6 +30,3 @@ jobs:
           context: .
           push: true
           tags: rodolfocugler/kafka-connect:6.1.0
-          build-args: |
-            GIT_PERSONAL_USERNAME=${{secrets.GIT_PERSONAL_USERNAME}}
-            GIT_PERSONAL_TOKEN=${{secrets.GIT_PERSONAL_TOKEN}}
