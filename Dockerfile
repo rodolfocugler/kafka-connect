@@ -27,7 +27,7 @@ RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector
 
 # download castorm-kafka-connect-http
 ENV KAFKA_CONNECT_HTTP_VERSION 0.7.7-0.1.0
-RUN curl -o html "https://github.com/finance-br/kafka-connect-http/packages/4445010?version=${KAFKA_CONNECT_HTTP_VERSION}" && \
+RUN curl -o html "https://github.com/finance-br/kafka-connect-http/packages/444469?version=${KAFKA_CONNECT_HTTP_VERSION}" && \
     link=$(cat html | grep -oh "https://github-registry-files.githubusercontent.com.*kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip.*stream") && \
     curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "${link//amp;/}" && \
     rm html && \
