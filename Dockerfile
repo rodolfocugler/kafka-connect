@@ -30,7 +30,7 @@ RUN curl -k -SL "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector
 
 # download castorm-kafka-connect-http
 ENV KAFKA_CONNECT_HTTP_VERSION 0.7.7-0.1.0
-RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven.pkg.github.com/finance-br/kafka-connect-http/com/github/castorm/kafka-connect-http/${KAFKA_CONNECT_HTTP_VERSION}/kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
+RUN curl -u $GIT_PERSONAL_USERNAME:$GIT_PERSONAL_TOKEN -o url.txt "https://maven.pkg.github.com/rodolfocugler/kafka-connect-http/com/github/castorm/kafka-connect-http/${KAFKA_CONNECT_HTTP_VERSION}/kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip" && \
     total_char=$(< url.txt wc -c) && \
     max_size=$((total_char - 26)) && \
     url_enconded=$(< url.txt cut -b 10-$max_size) && \
