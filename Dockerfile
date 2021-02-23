@@ -30,7 +30,7 @@ RUN echo ${GIT_PERSONAL_USERNAME}
 ENV KAFKA_CONNECT_HTTP_VERSION 0.7.7-0.1.0
 RUN curl -o html "https://github.com/rodolfocugler/kafka-connect-http/packages/444469?version=${KAFKA_CONNECT_HTTP_VERSION}" && \
     link=$(cat html | grep -oh "https://github-registry-files.githubusercontent.com.*kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip.*stream") && \
-    curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "${link//amp;/}"
+    curl -o castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip "${link//amp;/}" && \
     rm html && \
     unzip castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}.zip -d ./castorm-kafka-connect-http/castorm-kafka-connect-http-${KAFKA_CONNECT_HTTP_VERSION}
 
@@ -38,7 +38,7 @@ RUN curl -o html "https://github.com/rodolfocugler/kafka-connect-http/packages/4
 ENV KAFKA_CONNECT_MONGODB_SINK_VERSION 1.4.0-0.1.1
 RUN curl -o html "https://github.com/rodolfocugler/kafka-connect-mongodb/packages/480276?version=${KAFKA_CONNECT_MONGODB_SINK_VERSION}" && \
     link=$(cat html | grep -oh "https://github-registry-files.githubusercontent.com.*kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip.*stream") && \
-    curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip "${link//amp;/}"
+    curl -o hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip "${link//amp;/}" && \
     rm html && \    
     unzip hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}.zip -d ./hpgrahsl-kafka-connect-mongodb/hpgrahsl-kafka-connect-mongodb-${KAFKA_CONNECT_MONGODB_SINK_VERSION}
 
